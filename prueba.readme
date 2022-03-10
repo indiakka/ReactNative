@@ -1,0 +1,64 @@
+-detail
+{/* import {getTv} from '../services/services';*/},
+ const tvId = route.params.tvId;
+
+
+ const [tvDetail, setTvDetail] = useState(); 
+  
+  useEffect(() => {
+    getTv(tvId).then(tvData => {
+      setTvDetail(tvData);
+      setLoaded(true);
+    });
+  }, [tvId]); 
+
+
+  <Image
+              resizeMode="cover"
+              style={styles.image}
+              source={
+                tvDetail.poster_path
+                  ? {
+                      uri:
+                        'https://image.tmdb.org/t/p/w500' +
+                        tvDetail.poster_path,
+                    }
+                  : placeholderImage
+              }
+            />
+            <View style={styles.container}>
+              <View style={styles.playButton}>
+                <PlayButton handlePress={videoShown} />
+              </View>
+              <Text style={styles.movieTitle}>{tvDetail.title}</Text>
+              {tvDetail.genres && (
+                <View style={styles.genresContainer}>
+                  {tvDetail.genres.map(genre => {
+                    return (
+                      <Text style={styles.genre} key={genre.id}>
+                        {genre.name}
+                      </Text>
+                    );
+                  })}
+                </View>
+              )}
+              <StarRating
+                disabled={true}
+                maxStars={5}
+                starSize={30}
+                rating={tvDetail.vote_average / 2}
+                fullStarColor={'gold'}
+              />
+              <Text style={styles.overview}>{tvDetail.overview}</Text>
+              <Text style={styles.release}>
+                {'Release date: ' +
+                  dateFormat(tvDetail.release_date, 'mmmm dS, yyyy')}
+              </Text>
+            </View> 
+            
+            -services
+
+            export const getTv = async id => {
+  const resp = await axios.get(`${apiUrl}/tv/${id}?${apiKey}`);
+  return resp.data;
+}; 
