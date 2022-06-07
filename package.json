@@ -5,10 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react native start",
-    "prebuild": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
-    "build": "cd android && gradlew assembleDebug && cd ../",
-    "clear": "cd android & gradlew clean && cd ../",
+    "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -32,8 +29,7 @@
     "react-native-video": "^5.2.0",
     "react-native-video-controls": "^2.8.1",
     "regjsparser": "^0.8.4",
-    "sane": "^5.0.1",
-    "webpack-dev-server": "^4.9.1"
+    "sane": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
